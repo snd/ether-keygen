@@ -46,11 +46,11 @@ fn private_to_public(private_key_bytes: &[u8; 32]) -> [u8; 65] {
     let private_key = SecretKey::from_slice(&curve, &private_key_bytes[..]).unwrap();
     let public_key = PublicKey::from_secret_key(&curve, &private_key).unwrap();
     let public_key_bytes = public_key.serialize_uncompressed();
-    assert_eq!(public_key_bytes[0], 4);
     public_key_bytes
 }
 
 fn public_to_address(public: &[u8; 65]) -> [u8; 20] {
+    assert_eq!(public[0], 4);
     // ignore the leading constant `04` byte that signals "no compression"
     let public_key_hashed = keccak256(&public[1..]);
     // the address is the last 20 bytes of the keccac256 hash of the public key
