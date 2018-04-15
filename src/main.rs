@@ -62,3 +62,23 @@ fn public_to_address(public: &[u8; 65]) -> [u8; 20] {
 fn private_to_address(private: &[u8; 32]) -> [u8; 20] {
     public_to_address(&private_to_public(private))
 }
+
+fn private_from_hex(string: &str) -> [u8; 32] {
+    let mut result = [0u8; 32];
+    result.clone_from_slice(&hex::decode(string).unwrap());
+    result
+}
+
+fn address_from_hex(string: &str) -> [u8; 20] {
+    let mut result = [0u8; 20];
+    result.clone_from_slice(&hex::decode(string).unwrap());
+    result
+}
+
+#[test]
+fn test_private_to_public() {
+    assert_eq!(
+        address_from_hex("87b85d2cdf2bf4cd1604a6148962b9c4b9c63b40"),
+        private_to_address(&private_from_hex("c96f0916fb8ea45d3eecd9c97f8286b0e69728b348eb9c263a06aa16781b5f37"))
+    );
+}
