@@ -23,7 +23,7 @@ fn slice_to_hex(slice: &[u8]) -> String {
     result
 }
 
-fn keccak(data: &[u8]) -> [u8; 32] {
+fn keccak256(data: &[u8]) -> [u8; 32] {
     let mut sponge = Keccak::new_keccak256();
     sponge.update(data);
     let mut result = [0u8; 32];
@@ -52,7 +52,7 @@ fn private_to_public(private_key_bytes: &[u8; 32]) -> [u8; 65] {
 
 fn public_to_address(public: &[u8; 65]) -> [u8; 20] {
     // ignore the leading constant `04` byte that signals "no compression"
-    let public_key_hashed = keccak(&public[1..]);
+    let public_key_hashed = keccak256(&public[1..]);
     // the address is the last 20 bytes of the keccac256 hash of the public key
     let mut address = [0u8; 20];
     address.clone_from_slice(&public_key_hashed[12..]);
