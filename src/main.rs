@@ -10,7 +10,7 @@ use hex::ToHex;
 use tiny_keccak::Keccak;
 
 fn main() {
-    // A secure random number generator where the random values come directly from the operating system
+    // a secure random number generator where the random values come directly from the operating system
     let rng = SystemRandom::new();
 
     let curve = Secp256k1::new();
@@ -37,7 +37,6 @@ fn main() {
 
     let mut public_key_hex = String::new();
     public_key_hash.write_hex(&mut public_key_hex).unwrap();
-    println!("{}", public_key_hex);
 
     let address_bytes = &public_key_hash[12..];
     let mut address_hex = String::new();
