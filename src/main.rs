@@ -10,16 +10,10 @@ use hex::ToHex;
 use tiny_keccak::Keccak;
 
 fn main() {
-    let private_key = generate_private_key();
+    let private_key = random_private_key();
     println!("{}", slice_to_hex(&private_key));
 
-    let public_key = private_to_public(&private_key);
-
-    // ignore the leading constant `04` byte that signals "no compression"
-    let public_key_hashed = keccak(&public_key[1..]);
-
-    // the address is the last 20 bytes of the keccac256 hash of the public key
-    let address = &public_key_hashed[12..];
+    let address = private_to_address(&private_key);
     println!("{}", slice_to_hex(&address));
 }
 
@@ -37,7 +31,7 @@ fn keccak(data: &[u8]) -> [u8; 32] {
     result
 }
 
-fn generate_private_key() -> [u8; 32] {
+fn random_private_key() -> [u8; 32] {
     // a secure random number generator where the random values come directly from the operating system
     let rng = SystemRandom::new();
 
@@ -54,4 +48,17 @@ fn private_to_public(private_key_bytes: &[u8; 32]) -> [u8; 65] {
     let public_key_bytes = public_key.serialize_uncompressed();
     assert_eq!(public_key_bytes[0], 4);
     public_key_bytes
+}
+
+fn public_to_address(public: &[u8; 65]) -> [u8; 20] {
+    // ignore the leading constant `04` byte that signals "no compression"
+    let public_key_hashed = keccak(&public[1..]);
+    // the address is the last 20 bytes of the keccac256 hash of the public key
+    let mut address = [0u8; 20];
+    address.clone_from_slice(&public_key_hashed[12..]);
+    address
+}
+
+fn private_to_address(private: &[u8; 32]) -> [u8; 20] {
+    public_to_address(&private_to_public(private))
 }
