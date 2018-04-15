@@ -1,10 +1,10 @@
-extern crate secp256k1;
-extern crate ring;
 extern crate hex;
+extern crate ring;
+extern crate secp256k1;
 extern crate tiny_keccak;
 
-use ring::rand::{SystemRandom, SecureRandom};
-use secp256k1::{SecretKey, Secp256k1, PublicKey};
+use ring::rand::{SecureRandom, SystemRandom};
+use secp256k1::{PublicKey, Secp256k1, SecretKey};
 use secp256k1::constants::SECRET_KEY_SIZE;
 use hex::ToHex;
 use tiny_keccak::Keccak;
