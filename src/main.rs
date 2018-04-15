@@ -9,6 +9,20 @@ use secp256k1::constants::SECRET_KEY_SIZE;
 use hex::ToHex;
 use tiny_keccak::Keccak;
 
+fn main() {
+    let private_key = generate_private_key();
+    println!("{}", slice_to_hex(&private_key));
+
+    let public_key = private_to_public(&private_key);
+
+    // ignore the leading constant `04` byte that signals "no compression"
+    let public_key_hashed = keccak(&public_key[1..]);
+
+    // the address is the last 20 bytes of the keccac256 hash of the public key
+    let address = &public_key_hashed[12..];
+    println!("{}", slice_to_hex(&address));
+}
+
 fn slice_to_hex(slice: &[u8]) -> String {
     let mut result = String::new();
     slice.write_hex(&mut result).unwrap();
@@ -40,18 +54,4 @@ fn private_to_public(private_key_bytes: &[u8; 32]) -> [u8; 65] {
     let public_key_bytes = public_key.serialize_uncompressed();
     assert_eq!(public_key_bytes[0], 4);
     public_key_bytes
-}
-
-fn main() {
-    let private_key = generate_private_key();
-    println!("{}", slice_to_hex(&private_key));
-
-    let public_key = private_to_public(&private_key);
-
-    // ignore the leading constant `04` byte that signals "no compression"
-    let public_key_hashed = keccak(&public_key[1..]);
-
-    // the address is the last 20 bytes of the keccac256 hash of the public key
-    let address = &public_key_hashed[12..];
-    println!("{}", slice_to_hex(&address));
 }
