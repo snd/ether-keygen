@@ -50,6 +50,7 @@ fn private_to_public(private_key_bytes: &[u8; 32]) -> [u8; 65] {
 }
 
 fn public_to_address(public: &[u8; 65]) -> [u8; 20] {
+    // check our assumption that we're dealing with an uncompressed public key
     assert_eq!(public[0], 4);
     // ignore the leading constant `04` byte that signals "no compression"
     let public_key_hashed = keccak256(&public[1..]);
