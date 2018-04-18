@@ -72,14 +72,20 @@ pub fn address_from_hex(string: &str) -> [u8; 20] {
 fn test_private_to_public() {
     assert_eq!(
         address_from_hex("87b85d2cdf2bf4cd1604a6148962b9c4b9c63b40"),
-        private_to_address(&private_from_hex("c96f0916fb8ea45d3eecd9c97f8286b0e69728b348eb9c263a06aa16781b5f37"))
+        private_to_address(&private_from_hex(
+            "c96f0916fb8ea45d3eecd9c97f8286b0e69728b348eb9c263a06aa16781b5f37"
+        ))
     );
     assert_eq!(
         address_from_hex("f13b8f524f02a7efd9cf81ebd02a1ce19061fa20"),
-        private_to_address(&private_from_hex("d2cd6ce07b08e0f7bb2cd7cb79ab153b148e353a5d85caf42cfc2d2256e6d9ec"))
+        private_to_address(&private_from_hex(
+            "d2cd6ce07b08e0f7bb2cd7cb79ab153b148e353a5d85caf42cfc2d2256e6d9ec"
+        ))
     );
     assert_eq!(
         address_from_hex("abdf9e22b4cecb14f1bbb52831a9cb462e34f4be"),
-        private_to_address(&private_from_hex("e1c3d9103e74d36958ea0ba93c8556ed857e38178952c355145b76cbd692dc3a"))
+        private_to_address(&private_from_hex(
+            "e1c3d9103e74d36958ea0ba93c8556ed857e38178952c355145b76cbd692dc3a"
+        ))
     );
 }

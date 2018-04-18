@@ -7,4 +7,3 @@ fn main() {
     let address = ether_keygen::private_to_address(&private_key);
     println!("{}", ether_keygen::slice_to_hex(&address));
 }
-
