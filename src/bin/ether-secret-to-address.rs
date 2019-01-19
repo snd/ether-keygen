@@ -1,6 +1,6 @@
 extern crate ether_keygen;
 
-const USAGE: &str = "ether-secret-to-address {hex encoded secret (must be 64 chars long)}";
+const USAGE: &str = "Usage: ether-secret-to-address {hex encoded secret (must be 64 chars long)}";
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
