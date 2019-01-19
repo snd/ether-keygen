@@ -1,5 +1,7 @@
 # ether-keygen
 
+**no warranty. use at your own risk. don't use any of the private keys used as examples throughout this project**
+
 ## install
 
 ```
