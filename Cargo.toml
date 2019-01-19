@@ -1,7 +1,14 @@
 [package]
 name = "ether-keygen"
 version = "0.1.0"
-authors = ["Maximilian Krüger <kruemaxi@googlemail.com>"]
+authors = ["Maximilian Krüger <kruemaxi@gmail.com>"]
+description = "simple utilities for generating ethereum private keys and addresses from them "
+documentation = "https://github.com/snd/ether-keygen"
+homepage = "https://github.com/snd/ether-keygen"
+keywords = ["ethereum", "private-key", "address", "public-key"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/snd/ether-keygen.git"
 
 [dependencies]
 ring = "0.14.2"
