@@ -2,7 +2,7 @@
 name = "ether-keygen"
 version = "0.1.0"
 authors = ["Maximilian Krüger <kruemaxi@gmail.com>"]
-description = "simple utilities for generating ethereum private keys and addresses from them "
+description = "simple utilities for generating ethereum private keys and addresses from them"
 documentation = "https://github.com/snd/ether-keygen"
 homepage = "https://github.com/snd/ether-keygen"
 keywords = ["ethereum", "private-key", "address", "public-key"]
