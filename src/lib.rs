@@ -35,8 +35,8 @@ pub fn random_private_key() -> [u8; 32] {
 
 pub fn private_to_public(private_key_bytes: &[u8; 32]) -> [u8; 65] {
     let curve = Secp256k1::new();
-    let private_key = SecretKey::from_slice(&curve, &private_key_bytes[..]).unwrap();
-    let public_key = PublicKey::from_secret_key(&curve, &private_key).unwrap();
+    let private_key = SecretKey::from_slice(&private_key_bytes[..]).unwrap();
+    let public_key = PublicKey::from_secret_key(&curve, &private_key);
     let public_key_bytes = public_key.serialize_uncompressed();
     public_key_bytes
 }
